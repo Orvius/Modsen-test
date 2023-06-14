@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import Counter from "./components/Counter";
+import "./css/App.css";
+import React  from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
    <div className="App"> 
-      <Counter/>   
+      <Header/>   
    </div> 
   );
 }
