@@ -1,0 +1,28 @@
+.container{
+    width: 100%;
+    max-width: 1572px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.main__books-count{
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.main__books-block{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 60px;
+}
+
+.main__books-block::after{
+    content: "";
+    clear: both;
+    display: block;
+}
