@@ -23,6 +23,11 @@ const Header = (props) => {
           onChange={(e) => {
               setSearch(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              searchBook()
+            }
+          }}
         />
         <button
           className="search-btn"
@@ -42,7 +47,7 @@ const Header = (props) => {
               setCategory(e.target.value);
             }}
           >
-            <option value="all">all</option>
+            <option value="">all</option>
             <option value="art">art</option>
             <option value="biography">biography</option>
             <option value="computers">computers</option>

@@ -8,8 +8,8 @@ const BookItem = (props) => {
         <img src={props.book.image} alt="book" />
       </div>
       <h2 className="book-category">{props.book.category}</h2>
-      <h2 className="book-title">{props.book.title}</h2>
-      <h2 className="book-author">{props.book.author}</h2>
+      <h2 className="book-title">{props.book.title.length > 70 ? props.book.title.substring(0, 70) + "..." : props.book.title}</h2>
+      <h2 className="book-author">{props.book?.author?.length > 1 ? props.book?.author?.join(", ") : props.book?.author?.[0]}</h2>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import axios from "axios";
 
 function App() {
   const [books, setBooks] = useState([]);
-  const [count, setCount] = useState("");
+  const [count, setCount] = useState("0");
 
   const API_KEY = "AIzaSyC1IP0CY0jJ7e8HpAlXI_E-KLZUbVG3KGk";
   const API_URL = "https://www.googleapis.com/books/v1/volumes";
@@ -21,12 +21,9 @@ function App() {
       if (listBooks.length > 0) {
         setBooks(
           listBooks.map((item) => {
-            const title = item.volumeInfo.title;
-            const limitedTitle = title.length > 70 ? title.substring(0, 70) + "..." : title;
-
             const requestBook = {
               category: item.volumeInfo?.categories,
-              title: limitedTitle,
+              title: item.volumeInfo.title,
               author: item.volumeInfo.authors,
               image: item.volumeInfo.imageLinks?.thumbnail,
               id: item.id,
