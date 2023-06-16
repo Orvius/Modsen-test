@@ -15,6 +15,7 @@ function App() {
     axios.get(API_URL+"?q=intitle:"+search+"+subject:"+category+"&startIndex=0&maxResults=30&orderBy="+sorting +"&key="+API_KEY)
     .then(function (responce) {
       setCount(responce.data.totalItems);
+      setBooks([]);
 
       const listBooks = responce.data.items;
 
@@ -26,7 +27,6 @@ function App() {
               title: item.volumeInfo.title,
               author: item.volumeInfo.authors,
               image: item.volumeInfo.imageLinks?.thumbnail,
-              id: item.id,
             }
 
             return requestBook;

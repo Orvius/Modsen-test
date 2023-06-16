@@ -6,7 +6,7 @@ const Header = (props) => {
   const [category, setCategory] = useState("");
   const [sorting, setSorting] = useState("relevance");
 
-  const searchBook = () => {
+  const getDataBook = () => {
     props.searchBook(search, category, sorting);
   }
 
@@ -25,14 +25,14 @@ const Header = (props) => {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              searchBook()
+              getDataBook()
             }
           }}
         />
         <button
           className="search-btn"
           type="submit"
-          onClick={searchBook}
+          onClick={getDataBook}
         >
           <img src="../../images/loupe.png" alt="search" />
         </button>

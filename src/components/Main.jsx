@@ -8,8 +8,8 @@ const Main = (props) => {
       <div className="container">
         <h2 className="main__books-count">Found {props.count} results</h2>
         <div className="main__books-block">
-          {props.books?.map((book) => (
-            <BookItem key={book.key} book={book} />
+          {props.books?.map((surrentBook) => (
+            <BookItem key={surrentBook.key} book={surrentBook} />
           ))}
         </div>
       </div>
