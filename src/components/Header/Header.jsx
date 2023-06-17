@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import "../css/Header.css";
+import React, { useState } from "react";
+import "./Header.css";
 
 const Header = (props) => {
   const [search, setSearch] = useState("");
@@ -8,7 +8,7 @@ const Header = (props) => {
 
   const getDataBook = () => {
     props.searchBook(search, category, sorting);
-  }
+  };
 
   return (
     <header className="header">
@@ -21,19 +21,15 @@ const Header = (props) => {
           placeholder="Search..."
           value={search}
           onChange={(e) => {
-              setSearch(e.target.value);
+            setSearch(e.target.value);
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              getDataBook()
+              getDataBook();
             }
           }}
         />
-        <button
-          className="search-btn"
-          type="submit"
-          onClick={getDataBook}
-        >
+        <button className="search-btn" type="submit" onClick={getDataBook}>
           <img src="../../images/loupe.png" alt="search" />
         </button>
       </div>

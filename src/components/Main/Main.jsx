@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/Main.css";
-import BookItem from "./BookItem";
+import "./Main.css";
+import BookItem from "../BookItem/BookItem";
 
 const Main = (props) => {
   return (
