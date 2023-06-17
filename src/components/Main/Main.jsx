@@ -12,6 +12,7 @@ const Main = (props) => {
             <BookItem key={surrentBook.key} book={surrentBook} />
           ))}
         </div>
+        <button className="main__btn-load">Load more</button>
       </div>
     </main>
   );
