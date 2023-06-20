@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Header.css";
 
+import loupe from "../../assets/loupe.png";
+
 const Header = (props) => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -30,7 +32,7 @@ const Header = (props) => {
           }}
         />
         <button className="search-btn" type="submit" onClick={getDataBook}>
-          <img src="../../images/loupe.png" alt="search" />
+          <img src={loupe} alt="search" />
         </button>
       </div>
       <div className="header__categories">

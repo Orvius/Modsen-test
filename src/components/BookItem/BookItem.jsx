@@ -1,6 +1,8 @@
 import React from "react";
 import "./BookItem.css";
 
+import undefinedBook from "../../assets/undefined_book.png";
+
 const BookItem = ( {book} ) => {
   return (
     <div className="book-block">
@@ -8,7 +10,7 @@ const BookItem = ( {book} ) => {
         <img
           src={
             book.image === undefined
-              ? "../../images/undefined_book.png"
+              ? {undefinedBook}
               : book.image
           }
           alt="book"
