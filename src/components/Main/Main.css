@@ -1,5 +1,5 @@
 .main{
-    /*padding-bottom: 20px;*/
+    padding-bottom: 20px;
 }
 
 .container{
@@ -46,15 +46,16 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 1650px) {
     .container{
-        width: 1140px;
+        width: 1200px;
     }
 }
 
 @media only screen and (max-width: 1440px) {
     .container{
-        width: 1140px;
+        width: 1200px;
+        padding: 0;
     }
 }
   
