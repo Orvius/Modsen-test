@@ -9,10 +9,18 @@ function App() {
   const [count, setCount] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
 
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [sorting, setSorting] = useState("relevance");
+
   const API_KEY = process.env.REACT_APP_API_KEY;
   const API_URL = process.env.REACT_APP_API_URL;
 
   const searchBook = (search, category, sorting) => {
+    setSearch(search);
+    setCategory(category);
+    setSorting(sorting);
+
     axios
       .get(
         API_URL +
@@ -41,6 +49,7 @@ function App() {
                 title: item.volumeInfo.title,
                 author: item.volumeInfo.authors,
                 image: item.volumeInfo.imageLinks?.thumbnail,
+                description: item.volumeInfo.description,
               };
 
               return requestBook;
@@ -53,8 +62,8 @@ function App() {
       });
   };
 
-  const loadMore = (search, category, sorting) => {
-    setStartIndex(startIndex + 30);
+  const loadMore = () => {
+    const newStartIndex = startIndex + 30;
     axios
       .get(
         API_URL +
@@ -63,30 +72,30 @@ function App() {
           "+subject:" +
           category +
           "&startIndex=" +
-          startIndex +
+          newStartIndex +
           "&maxResults=30&orderBy=" +
           sorting +
           "&key=" +
           API_KEY
       )
       .then(function (responce) {
-        setBooks([]);
-
         const listBooks = responce.data.items;
 
         if (listBooks.length > 0) {
-          const setMoreBooks = listBooks.map((item) => {
+          const moreBooks = listBooks.map((item) => {
             const requestBook = {
               category: item.volumeInfo?.categories,
               title: item.volumeInfo.title,
               author: item.volumeInfo.authors,
               image: item.volumeInfo.imageLinks?.thumbnail,
+              description: item.volumeInfo.description,
             };
 
             return requestBook;
           });
 
-          setBooks((books) => [...books, ...setMoreBooks]);
+          setBooks((prevBooks) => [...prevBooks, ...moreBooks]);
+          setStartIndex(newStartIndex);
         }
       })
       .catch((e) => {
