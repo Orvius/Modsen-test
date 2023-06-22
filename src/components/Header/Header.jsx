@@ -11,6 +11,7 @@ const Header = (props) => {
 
   const getDataBook = () => {
     props.searchBook(search, category, sorting);
+
   };
 
   const SearchChange = (e) => {

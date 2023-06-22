@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import BookPage from "../BookPage/BookPage";
 import "./App.css";
-import axios from "axios";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -50,6 +53,7 @@ function App() {
                 author: item.volumeInfo.authors,
                 image: item.volumeInfo.imageLinks?.thumbnail,
                 description: item.volumeInfo.description,
+                id: item.id,
               };
 
               return requestBook;
@@ -89,6 +93,7 @@ function App() {
               author: item.volumeInfo.authors,
               image: item.volumeInfo.imageLinks?.thumbnail,
               description: item.volumeInfo.description,
+              id: item.id,
             };
 
             return requestBook;
@@ -104,10 +109,15 @@ function App() {
   };
 
   return (
+    <BrowserRouter>
     <div className="App">
       <Header searchBook={searchBook} />
-      <Main books={books} count={count} loadMore={loadMore} />
+      <Routes>
+        <Route path="/" element={<Main books={books} count={count} loadMore={loadMore} />} />
+        <Route path="/book/:bookId" element={<BookPage books={books} />} />
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
