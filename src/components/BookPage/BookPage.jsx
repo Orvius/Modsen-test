@@ -1,26 +1,35 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./BookPage.css";
+import undefinedBook from "../../assets/undefined_book.png";
 
-const BookPage = (props) => {
+const BookPage = ({ books }) => {
+  const { bookId } = useParams();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  const book = books.find((book) => book.id === bookId);
+
   return (
     <main className="main">
       <div className="container">
-      <div className="current-book__background">
+        <button className="current-book__back-btn" onClick={goBack}>Back</button>
+        <div className="current-book__background">
           <div className="img-container">
-            <img src="../../images/undefined_book.png" alt="book" />
+            <img
+              src={book?.image === undefined ? undefinedBook : book.image}
+              alt="book"
+            />
           </div>
         </div>
         <div className="current-book__txt">
-          <h2 className="current-book-category">Poetry / General</h2>
-          <h2 className="current-book-title">Маленький принц. Том 1</h2>
-          <h2 className="current-book-author">Антуан де Сент-Экзюпери</h2>
-          <p className="current-book-about">
-            Однажды на рассвете лётчика разбудил неизвестно откуда взявшийся
-            маленький мальчик. Это был Маленький принц. — мальчик с бледным
-            лицом и золотыми волосами, умеет путешествовать с планеты на
-            планету, добрый, серьёзный, впечатлительный, любознательный,
-            наивный. Лётчик привязался к Маленькому принцу.
-          </p>
+          <h2 className="current-book-category">{book?.category}</h2>
+          <h2 className="current-book-title">{book?.title}</h2>
+          <h2 className="current-book-author">{book?.author}</h2>
+          <p className="current-book-about">{book?.description}</p>
         </div>
       </div>
     </main>

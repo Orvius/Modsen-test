@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import SelectBlock from "../SelectBlock/SelectBlock";
 
@@ -9,8 +10,12 @@ const Header = (props) => {
   const [category, setCategory] = useState("");
   const [sorting, setSorting] = useState("relevance");
 
+  const navigate = useNavigate();
+
   const getDataBook = () => {
     props.searchBook(search, category, sorting);
+
+    navigate("/");
   };
 
   const SearchChange = (e) => {
