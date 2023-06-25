@@ -16,7 +16,9 @@ const BookPage = ({ books }) => {
   return (
     <main className="main">
       <div className="container">
-        <button className="current-book__back-btn" onClick={goBack}>Back</button>
+        <button className="current-book__back-btn" onClick={goBack}>
+          Back
+        </button>
         <div className="current-book__background">
           <div className="img-container">
             <img
@@ -28,8 +30,14 @@ const BookPage = ({ books }) => {
         <div className="current-book__txt">
           <h2 className="current-book-category">{book?.category}</h2>
           <h2 className="current-book-title">{book?.title}</h2>
-          <h2 className="current-book-author">{book?.author}</h2>
-          <p className="current-book-about">{book?.description}</p>
+          <h2 className="current-book-author">
+            {book?.author?.length > 1
+              ? book?.author?.join(", ")
+              : book?.author?.[0]}
+          </h2>
+          <p className="current-book-about">
+            {book?.description === undefined ? "No description" : book.description}
+          </p>
         </div>
       </div>
     </main>

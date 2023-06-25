@@ -11,6 +11,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [count, setCount] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -20,9 +21,12 @@ function App() {
   const API_URL = process.env.REACT_APP_API_URL;
 
   const searchBook = (search, category, sorting) => {
+    setStartIndex(0);
+    setBooks([]);
     setSearch(search);
     setCategory(category);
     setSorting(sorting);
+    setIsLoading(true);
 
     axios
       .get(
@@ -50,6 +54,7 @@ function App() {
             })
           );
         }
+        setIsLoading(false);
       })
       .catch((e) => {
         console.error(e);
@@ -103,7 +108,7 @@ function App() {
     <div className="App">
       <Header searchBook={searchBook} />
       <Routes>
-        <Route path="/" element={<Main books={books} count={count} loadMore={loadMore} />} />
+        <Route path="/" element={<Main books={books} count={count} loadMore={loadMore} loading={isLoading}/>} />
         <Route path="/book/:bookId" element={<BookPage books={books} />} />
       </Routes>
     </div>

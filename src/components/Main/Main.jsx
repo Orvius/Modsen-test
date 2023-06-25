@@ -10,15 +10,17 @@ const Main = (props) => {
   return (
     <main className="main">
       <div className="container">
-        {props.count !== 0 ? (
+        {props.loading ? (
+          <div className="main__load"><div className="lds-dual-ring" /></div>
+        ) : (
           <h2 className="main__books-count">Found {props.count} results</h2>
-        ) : null}
+        )}
         <div className="main__books-block">
           {props.books?.map((surrentBook) => (
             <BookItem key={uuidv4()} book={surrentBook} />
           ))}
         </div>
-        {props.count !== 0 ? (
+        {props.books.length !== 0 ? (
           <button className="main__btn-load" onClick={loadMore}>
             Load more
           </button>
