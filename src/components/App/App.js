@@ -65,17 +65,7 @@ function App() {
     const newStartIndex = startIndex + 30;
     axios
       .get(
-        API_URL +
-          "?q=intitle:" +
-          search +
-          "+subject:" +
-          category +
-          "&startIndex=" +
-          newStartIndex +
-          "&maxResults=30&orderBy=" +
-          sorting +
-          "&key=" +
-          API_KEY
+        API_URL+"?q=intitle:"+search+"+subject:"+category+"&startIndex="+newStartIndex+"&maxResults=30&orderBy="+sorting+"&key="+API_KEY
       )
       .then(function (responce) {
         const listBooks = responce.data.items;
