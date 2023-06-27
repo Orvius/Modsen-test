@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
+import { AppProvider } from "../AppContext";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import BookPage from "../BookPage/BookPage";
@@ -13,6 +15,7 @@ function App() {
   const [startIndex, setStartIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
+  //Не успел разобраться с контекстом
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [sorting, setSorting] = useState("relevance");
@@ -44,7 +47,7 @@ function App() {
                 title: item.volumeInfo.title,
                 author: item.volumeInfo.authors || [],
                 image: item.volumeInfo.imageLinks?.thumbnail,
-                description: item.volumeInfo.description || "",
+                description: item.volumeInfo.description,
                 id: item.id,
               };
 
@@ -93,7 +96,8 @@ function App() {
 
   return (
     <BrowserRouter>
-        <div className="App">
+    <AppProvider>
+    <div className="App">
           <Header searchBook={searchBook} />
           <Routes>
             <Route
@@ -110,6 +114,8 @@ function App() {
             <Route path="/book/:bookId" element={<BookPage books={books} />} />
           </Routes>
         </div>
+    </AppProvider>
+        
     </BrowserRouter>
   );
 }
