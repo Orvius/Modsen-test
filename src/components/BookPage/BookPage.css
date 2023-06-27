@@ -1,133 +1,133 @@
-.current-book__back-btn{
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    font-weight: 500;
-    padding: 5px;
-    background-color: #dddcdb;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    list-style:armenian;
-    cursor: pointer;
-    margin: 15px 0px;
-    margin-left: 30px;
+.current-book__back-btn {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 500;
+  padding: 5px;
+  background-color: #dddcdb;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  list-style: armenian;
+  cursor: pointer;
+  margin: 15px 0px;
+  margin-left: 30px;
 }
 
-.img-container{
-    width: 305px;
-    float: left;
-    margin-left: 30px;
+.img-container {
+  width: 305px;
+  float: left;
+  margin-left: 30px;
 }
 
-.img-container img{
-    width: 305px;
-    height: 424px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+.img-container img {
+  width: 305px;
+  height: 424px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-.current-book__txt{
-    overflow: hidden;
-    padding: 0px 60px 0px 60px;
+.current-book__txt {
+  overflow: hidden;
+  padding: 0px 60px 0px 60px;
 }
 
-.current-book-category{
-    font-size: 18px;
-    font-weight: 400;
-    text-decoration: underline;
-    color: #878787;
+.current-book-category {
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: underline;
+  color: #878787;
 }
 
-.current-book-title{
-    font-size: 24px;
-    font-weight: 500;
-    padding: 30px 0px 10px 0px;
-    max-width: 100%;
+.current-book-title {
+  font-size: 24px;
+  font-weight: 500;
+  padding: 30px 0px 10px 0px;
+  max-width: 100%;
 }
 
-.current-book-author{
-    font-size: 18px;
-    font-weight: 300;
-    color: #878787;
-    padding: 10px 0px;
-    max-width: 100%;
+.current-book-author {
+  font-size: 18px;
+  font-weight: 300;
+  color: #878787;
+  padding: 10px 0px;
+  max-width: 100%;
 }
 
-.current-book-about{
-    font-size: 18px;
-    font-weight: 500;
-    padding: 20px;
-    min-height: 200px;
-    border: 1px solid #bdbcbc;
+.current-book-about {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
+  min-height: 200px;
+  border: 1px solid #bdbcbc;
 }
-  
+
 @media only screen and (max-width: 1199px) {
-    .container{
-        width: 100%;
-        padding: 0;
-    }
+  .container {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 991px) {
-    .current-book__back-btn{
-        width: 120px;
-        height: 30px;
-        font-size: 20px;
-        margin: 15px 0px;
-        margin-left: 30px;
-    }
+  .current-book__back-btn {
+    width: 120px;
+    height: 30px;
+    font-size: 20px;
+    margin: 15px 0px;
+    margin-left: 30px;
+  }
 
-    .img-container{
-        width: 254px;
-    }
+  .img-container {
+    width: 254px;
+  }
 
-    .img-container img{
-        width: 254px;
-        height: 353px;
-    }
+  .img-container img {
+    width: 254px;
+    height: 353px;
+  }
 
-    .current-book__txt{
-        padding: 0px 30px;
-    }
+  .current-book__txt {
+    padding: 0px 30px;
+  }
 
-    .current-book-category{
-        font-size: 16px;
-    }
-    
-    .current-book-title{
-        font-size: 20px;
-        padding: 10px 0px;
-    }
-    
-    .current-book-author{
-        font-size: 16px;
-        padding: 10px 0px;
-    }
-    
-    .current-book-about{
-        font-size: 16px;
-        padding: 10px;
-    }
+  .current-book-category {
+    font-size: 16px;
+  }
+
+  .current-book-title {
+    font-size: 20px;
+    padding: 10px 0px;
+  }
+
+  .current-book-author {
+    font-size: 16px;
+    padding: 10px 0px;
+  }
+
+  .current-book-about {
+    font-size: 16px;
+    padding: 10px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-    .img-container{
-        float: none;
-        margin: 0 auto;
-    }
-    .current-book__txt{
-        padding: 20px 30px 0px 30px;
-    }
+  .img-container {
+    float: none;
+    margin: 0 auto;
+  }
+  .current-book__txt {
+    padding: 20px 30px 0px 30px;
+  }
 }
 
-@media only screen and (max-width: 399px) { 
-    .current-book__back-btn{
-        margin-left: 20px;
-    }
-    .current-book__txt{
-        padding: 20px 20px 0px 20px;
-    }
+@media only screen and (max-width: 399px) {
+  .current-book__back-btn {
+    margin-left: 20px;
+  }
+  .current-book__txt {
+    padding: 20px 20px 0px 20px;
+  }
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./BookPage.css";
 import undefinedBook from "../../assets/undefined_book.png";
 
-const BookPage = ({ books }) => {
+
+function BookPage({ books }) {
   const { bookId } = useParams();
   const navigate = useNavigate();
 
@@ -11,12 +13,12 @@ const BookPage = ({ books }) => {
     navigate(-1);
   };
 
-  const book = books.find((book) => book.id === bookId);
+  const book = books.find((item) => item.id === bookId);
 
   return (
     <main className="main">
       <div className="container">
-        <button className="current-book__back-btn" onClick={goBack}>
+        <button className="current-book__back-btn" onClick={goBack} type="button">
           Back
         </button>
         <div className="current-book__background">
@@ -42,6 +44,25 @@ const BookPage = ({ books }) => {
       </div>
     </main>
   );
+};
+
+BookPage.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]).isRequired,
+      title: PropTypes.string.isRequired,
+      category: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]).isRequired,
+      image: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default BookPage;
