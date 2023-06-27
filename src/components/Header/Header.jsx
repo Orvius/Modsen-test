@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import "./Header.css";
 import SelectBlock from "../SelectBlock/SelectBlock";
-
 import loupe from "../../assets/loupe.png";
 
-const Header = (props) => {
+function Header({searchBook}) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [sorting, setSorting] = useState("relevance");
@@ -13,7 +14,7 @@ const Header = (props) => {
   const navigate = useNavigate();
 
   const getDataBook = () => {
-    props.searchBook(search, category, sorting);
+    searchBook(search, category, sorting);
 
     navigate("/");
   };
@@ -79,6 +80,10 @@ const Header = (props) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  searchBook: PropTypes.func.isRequired,
 };
 
 export default Header;
