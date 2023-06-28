@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
-import { AppProvider } from "../AppContext";
+import { AppContext } from "../AppContext";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -15,24 +15,20 @@ function App() {
   const [startIndex, setStartIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  //Не успел разобраться с контекстом
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [sorting, setSorting] = useState("relevance");
+  const { search, category, sorting } = useContext(AppContext);
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const API_URL = process.env.REACT_APP_API_URL;
 
-  const searchBook = (search, category, sorting) => {
+  const searchBook = () => {
     setStartIndex(0);
     setBooks([]);
-    setSearch(search);
-    setCategory(category);
-    setSorting(sorting);
     setIsLoading(true);
 
     axios
-      .get(`${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${startIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`)
+      .get(
+        `${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${startIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`
+      )
       .then((response) => {
         setCount(response.data.totalItems);
         setBooks([]);
@@ -58,7 +54,9 @@ function App() {
         setIsLoading(false);
       })
       .catch(() => {
-        const customError = new Error("Произошла ошибка при выполнении запроса");
+        const customError = new Error(
+          "Произошла ошибка при выполнении запроса"
+        );
         console.log(customError);
       });
   };
@@ -66,7 +64,9 @@ function App() {
   const loadMore = () => {
     const newStartIndex = startIndex + 30;
     axios
-      .get(`${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${newStartIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`)
+      .get(
+        `${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${newStartIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`
+      )
       .then((response) => {
         const listBooks = response.data.items;
 
@@ -89,33 +89,32 @@ function App() {
         }
       })
       .catch(() => {
-        const customError = new Error("Произошла ошибка при выполнении запроса");
+        const customError = new Error(
+          "Произошла ошибка при выполнении запроса"
+        );
         console.log(customError);
       });
   };
 
   return (
     <BrowserRouter>
-    <AppProvider>
-    <div className="App">
-          <Header searchBook={searchBook} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  books={books}
-                  count={count}
-                  loadMore={loadMore}
-                  loading={isLoading}
-                />
-              }
-            />
-            <Route path="/book/:bookId" element={<BookPage books={books} />} />
-          </Routes>
-        </div>
-    </AppProvider>
-        
+      <div className="App">
+        <Header searchBook={searchBook} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                books={books}
+                count={count}
+                loadMore={loadMore}
+                loading={isLoading}
+              />
+            }
+          />
+          <Route path="/book/:bookId" element={<BookPage books={books} />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
