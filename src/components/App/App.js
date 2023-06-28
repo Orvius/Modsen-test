@@ -20,6 +20,19 @@ function App() {
   const API_KEY = process.env.REACT_APP_API_KEY;
   const API_URL = process.env.REACT_APP_API_URL;
 
+  const mapBookItem = (item) => {
+    const requestBook = {
+      category: item.volumeInfo?.categories || [],
+      title: item.volumeInfo.title,
+      author: item.volumeInfo.authors || [],
+      image: item.volumeInfo.imageLinks?.thumbnail,
+      description: item.volumeInfo.description,
+      id: item.id,
+    };
+
+    return requestBook;
+  };
+
   const searchBook = () => {
     setStartIndex(0);
     setBooks([]);
@@ -36,20 +49,9 @@ function App() {
         const listBooks = response.data.items;
 
         if (Array.isArray(listBooks) && listBooks.length > 0) {
-          setBooks(
-            listBooks.map((item) => {
-              const requestBook = {
-                category: item.volumeInfo?.categories || [],
-                title: item.volumeInfo.title,
-                author: item.volumeInfo.authors || [],
-                image: item.volumeInfo.imageLinks?.thumbnail,
-                description: item.volumeInfo.description,
-                id: item.id,
-              };
+          const newBooks = listBooks.map(mapBookItem);
 
-              return requestBook;
-            })
-          );
+          setBooks(newBooks);
         }
         setIsLoading(false);
       })
@@ -71,18 +73,7 @@ function App() {
         const listBooks = response.data.items;
 
         if (Array.isArray(listBooks) && listBooks.length > 0) {
-          const moreBooks = listBooks.map((item) => {
-            const requestBook = {
-              category: item.volumeInfo?.categories,
-              title: item.volumeInfo.title,
-              author: item.volumeInfo.authors,
-              image: item.volumeInfo.imageLinks?.thumbnail,
-              description: item.volumeInfo.description,
-              id: item.id,
-            };
-
-            return requestBook;
-          });
+          const moreBooks = listBooks.map(mapBookItem);
 
           setBooks((prevBooks) => [...prevBooks, ...moreBooks]);
           setStartIndex(newStartIndex);
