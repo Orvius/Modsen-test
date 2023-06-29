@@ -1,7 +1,8 @@
+import "./BookItem.css";
+
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./BookItem.css";
 
 import undefinedBook from "../../assets/undefined_book.png";
 

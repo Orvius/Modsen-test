@@ -1,10 +1,10 @@
+import "./App.css";
+
 import React, { useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
-
 import { AppContext } from "../AppContext";
 
-import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import BookPage from "../BookPage/BookPage";
@@ -33,25 +33,22 @@ function App() {
     return requestBook;
   };
 
-  const searchBook = () => {
-    setStartIndex(0);
-    setBooks([]);
+  const fetchBooks = (newStartIndex) => {
     setIsLoading(true);
-
+  
     axios
       .get(
-        `${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${startIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`
+        `${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${newStartIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`
       )
       .then((response) => {
         setCount(response.data.totalItems);
-        setBooks([]);
-
+  
         const listBooks = response.data.items;
-
+  
         if (Array.isArray(listBooks) && listBooks.length > 0) {
           const newBooks = listBooks.map(mapBookItem);
-
-          setBooks(newBooks);
+  
+          setBooks((prevBooks) => [...prevBooks, ...newBooks]);
         }
         setIsLoading(false);
       })
@@ -60,31 +57,20 @@ function App() {
           "Произошла ошибка при выполнении запроса"
         );
         console.log(customError);
+        setIsLoading(false);
       });
+  };
+
+  const searchBook = () => {
+    setStartIndex(0);
+    setBooks([]);
+    fetchBooks(0);
   };
 
   const loadMore = () => {
     const newStartIndex = startIndex + 30;
-    axios
-      .get(
-        `${API_URL}?q=intitle:${search}+subject:${category}&startIndex=${newStartIndex}&maxResults=30&orderBy=${sorting}&key=${API_KEY}`
-      )
-      .then((response) => {
-        const listBooks = response.data.items;
-
-        if (Array.isArray(listBooks) && listBooks.length > 0) {
-          const moreBooks = listBooks.map(mapBookItem);
-
-          setBooks((prevBooks) => [...prevBooks, ...moreBooks]);
-          setStartIndex(newStartIndex);
-        }
-      })
-      .catch(() => {
-        const customError = new Error(
-          "Произошла ошибка при выполнении запроса"
-        );
-        console.log(customError);
-      });
+    fetchBooks(newStartIndex);
+    setStartIndex(newStartIndex);
   };
 
   return (

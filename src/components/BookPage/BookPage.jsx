@@ -1,7 +1,9 @@
+import "./BookPage.css";
+
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import "./BookPage.css";
+
 import undefinedBook from "../../assets/undefined_book.png";
 
 
