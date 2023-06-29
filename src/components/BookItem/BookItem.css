@@ -9,6 +9,12 @@
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   color: #000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-block:hover {
+  transform: translateY(-6px);
+  box-shadow: rgba(4, 76, 158, 0.932) 0px 0px 12px;
 }
 
 .book-img-container {
@@ -30,7 +36,10 @@
   text-decoration: underline;
   color: #878787;
   padding: 0px 20px;
-  padding-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .book-title {

@@ -1,6 +1,7 @@
+import  "./SelectBlock.css";
+
 import React from "react";
 import PropTypes from "prop-types";
-import  "./SelectBlock.css";
 
 function SelectBlock({ title, options, onChange }) {
   return (

@@ -56,7 +56,6 @@
   margin-right: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .main__books-block::after {
@@ -80,6 +79,12 @@
   border: 1px solid rgba(0, 0, 0, 0.25);
   list-style: armenian;
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main__btn-load:hover {
+  transform: translateY(-6px);
+  box-shadow: rgba(4, 76, 158, 0.932) 0px 0px 12px;
 }
 
 @media only screen and (max-width: 1650px) {

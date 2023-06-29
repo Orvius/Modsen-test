@@ -1,7 +1,9 @@
+import "./Main.css"
+
 import React from "react"
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid"
-import "./Main.css"
+
 import BookItem from "../BookItem/BookItem"
 
 function Main({ loading, count, books, loadMore }) {

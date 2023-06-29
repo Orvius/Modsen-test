@@ -1,12 +1,12 @@
+import "./Header.css";
+
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { AppContext } from "../AppContext";
 
-import "./Header.css";
 import SelectBlock from "../SelectBlock/SelectBlock";
 import loupe from "../../assets/loupe.png";
-
-import { AppContext } from "../AppContext";
 
 function Header({searchBook}) {
   const { search, category, sorting, setSearch, setCategory, setSorting } =
