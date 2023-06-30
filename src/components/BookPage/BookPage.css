@@ -19,7 +19,7 @@
 
 .current-book__back-btn:hover {
   transform: translateY(-3px);
-  box-shadow: rgba(4, 76, 158, 0.932) 0px 0px 6px;
+  box-shadow: rgba(17, 43, 75, 0.932) 0px 0px 6px;
 }
 
 .img-container {
